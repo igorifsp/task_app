@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <div class="title-container">
+      <title>TaskZen | Entre</title>
+    </div>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap"
+    />
+
+    <link rel="stylesheet" href="../global.css" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 d-none d-md-block" id="capa"></div>
+        <div class="col-md-6">
+          <div
+            class="row justify-content-center align-items-center"
+            style="height: 100vh"
+          >
+            <div class="col-8">
+              <div class="card">
+                <div class="card-body">
+                  <form id="loginForm">
+                    <h3 class="text-center mb-3">Login</h3>
+                    <br />
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control rounded-pill"
+                        id="username"
+                        placeholder="Nome de usuário"
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <input
+                        type="password"
+                        class="form-control rounded-pill"
+                        id="password"
+                        placeholder="Senha"
+                        required
+                      />
+                    </div>
+                    <div class="form-group form-check">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="rememberMe"
+                      />
+                      <label
+                        class="form-check-label"
+                        id="small"
+                        for="rememberMe"
+                        style="margin-right: 6rem"
+                        >Lembre de mim</label
+                      >
+                      <a href="#" class="text-right" id="small"
+                        >Esqueceu a senha?</a
+                      >
+                    </div>
+                    <button type="submit" class="btn btn-block rounded-pill">
+                      Entrar
+                    </button>
+                    <div class="sign-up" id="small">
+                      Novo aqui?
+                      <a href="../cadastro/index.html">Criar uma conta</a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
