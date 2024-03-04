@@ -29,8 +29,9 @@ document
         // Redirecionar para a página tasks
         window.location.href = "../tasks/index.html";
       } else {
-        const responseData = await response.json();
-        console.error("Erro de login:", responseData.error);
+        // Exibir mensagem de erro
+        document.getElementById("errorMessage").textContent =
+          "Credenciais inválidas. Por favor, tente novamente.";
       }
     } catch (error) {
       console.error("Erro ao enviar dados para a API:", error.message);
