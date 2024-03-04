@@ -8,6 +8,11 @@ document
     var username = document.getElementById("username").value;
     var favoriteActivity = document.getElementById("favoriteActivity").value;
 
+    if (password.length < 8 || password.length > 16) {
+      alert("A senha deve ter entre 8 e 16 caracteres.");
+      return;
+    }
+
     try {
       const response = await fetch("http://localhost:3000/users/", {
         method: "POST",
