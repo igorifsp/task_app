@@ -23,7 +23,10 @@ document
       });
 
       if (response.ok) {
-        //Página tasks
+        const userData = await response.json();
+        localStorage.setItem("userData", JSON.stringify(userData));
+
+        // Redirecionar para a página tasks
         window.location.href = "../tasks/index.html";
       } else {
         const responseData = await response.json();
