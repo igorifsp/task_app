@@ -1,4 +1,5 @@
 require("dotenv").config(); // Importando as variáveis de ambiente
+const cors = require("cors");
 
 // Importando as dependências necessárias
 const express = require("express");
@@ -8,6 +9,8 @@ const taskRoutes = require("./routes/taskRoutes"); // Importando as rotas de tar
 
 // Inicializando o aplicativo Express
 const app = express();
+
+app.use(cors());
 
 // Middleware para analisar o corpo das solicitações como JSON
 app.use(bodyParser.json());
