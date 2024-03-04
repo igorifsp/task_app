@@ -1,6 +1,6 @@
 require("dotenv").config(); // Carrega as variáveis de ambiente do arquivo .env
 
-const mysql = require("mysql");
+const mysql = require("mysql2");
 
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
