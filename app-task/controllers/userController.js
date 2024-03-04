@@ -1,6 +1,20 @@
-const userService = require('../services/userService');
+const userService = require("../services/userService");
 
 module.exports = {
+  loginUser: async (req, res) => {
+    try {
+      const { email, password } = req.body;
+      const user = await userService.getUserByEmailAndPassword(email, password);
+      if (!user) {
+        res.status(401).json({ error: "Credenciais inválidas" });
+      } else {
+        res.status(200).json(user);
+      }
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
+
   createUser: async (req, res) => {
     try {
       const userData = req.body; // Obtém os dados do corpo da requisição
@@ -16,7 +30,7 @@ module.exports = {
       const email = req.params.email; // Obtém o email do usuário a ser buscado
       const user = await userService.getUser(email); // Chama o serviço para obter o usuário
       if (!user) {
-        res.status(404).json({ message: 'Usuário não encontrado' }); // Retorna um erro se o usuário não for encontrado
+        res.status(404).json({ message: "Usuário não encontrado" }); // Retorna um erro se o usuário não for encontrado
       } else {
         res.status(200).json(user); // Retorna o usuário encontrado
       }
@@ -40,7 +54,7 @@ module.exports = {
       const userData = req.body; // Obtém os dados atualizados do corpo da requisição
       const updatedUser = await userService.updateUser(email, userData); // Chama o serviço para atualizar o usuário
       if (!updatedUser) {
-        res.status(404).json({ message: 'Usuário não encontrado' }); // Retorna um erro se o usuário não for encontrado
+        res.status(404).json({ message: "Usuário não encontrado" }); // Retorna um erro se o usuário não for encontrado
       } else {
         res.status(200).json(updatedUser); // Retorna o usuário atualizado
       }
@@ -54,12 +68,12 @@ module.exports = {
       const email = req.params.email; // Obtém o email do usuário a ser deletado
       const deletedUser = await userService.deleteUser(email); // Chama o serviço para deletar o usuário
       if (!deletedUser) {
-        res.status(404).json({ message: 'Usuário não encontrado' }); // Retorna um erro se o usuário não for encontrado
+        res.status(404).json({ message: "Usuário não encontrado" }); // Retorna um erro se o usuário não for encontrado
       } else {
-        res.status(200).json({ message: 'Usuário deletado com sucesso' }); // Retorna uma mensagem de sucesso se o usuário for deletado
+        res.status(200).json({ message: "Usuário deletado com sucesso" }); // Retorna uma mensagem de sucesso se o usuário for deletado
       }
     } catch (error) {
       res.status(500).json({ error: error.message }); // Retorna um erro em caso de falha na exclusão do usuário
     }
-  }
-}
+  },
+};

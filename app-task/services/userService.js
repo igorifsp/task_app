@@ -3,6 +3,24 @@ require("dotenv").config(); // Carrega as variáveis de ambiente do arquivo .env
 const db = require("../dbConfig");
 
 module.exports = {
+  getUserByEmailAndPassword: async (email, password) => {
+    const query = "SELECT * FROM users WHERE email = ? AND password = ?";
+    return new Promise((resolve, reject) => {
+      db.query(query, [email, password], (error, results) => {
+        if (error) {
+          reject(error);
+        } else {
+          if (results.length === 0) {
+            resolve(null);
+          } else {
+            const { email, favoriteActivity, username } = results[0];
+            resolve({ email, favoriteActivity, username });
+          }
+        }
+      });
+    });
+  },
+
   createUser: async (userData) => {
     const { email, password, favoriteActivity, username } = userData;
     const query =
