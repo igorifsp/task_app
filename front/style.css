@@ -1,0 +1,87 @@
+:root {
+    --bgToDo: #C4D6D9;
+    --bgMain: #0C5663;
+    --datails: #C4D6D9;
+}
+
+* {
+    font-family: "Roboto", sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.body {
+    width: 100%;
+    height: 100vh;
+}
+
+.navbar-light #navbarSupportedContent {
+    justify-content: flex-end;
+}
+
+.nav-bar {
+    background-color: #fff;
+}
+
+.navbar-brand {
+    color: var(--bgMain);
+    font-weight: 500;
+    font-size: 1.9rem
+}
+
+.navbar-brand img {
+    width: 40px;
+    padding-right: 5px;
+}
+
+.menu button {
+    outline: none;
+    border: 2px solid var(--bgMain);
+    padding: 2px;
+    background-color: #fff;
+    border-radius: 7px;
+    margin-left: 12px;
+    margin-top: 5px;
+    color: var(--bgMain);
+    height: 30px;
+}
+
+.menu button:hover {
+    background-color: var(--bgMain);
+    color: #fff;
+}
+
+.context {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+.title h1 {
+    font-size: 5rem;
+    text-align: center;
+}
+
+.subtitle p {
+    text-align: center;
+    font-size: 1.5rem
+}
+
+.context button {
+    padding: 3px 12px;
+    font-size: 1.4rem;
+    background-color: var(--bgMain);
+    border: 2px solid transparent;
+    color: #fff;
+    border-radius: 7px;
+}
+
+.context button:hover {
+    padding: 3px 12px;
+    background-color: #fff;
+    border: 2px solid var(--bgMain);
+    color: #0C5663;
+    font-weight: 500;
+}
