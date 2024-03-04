@@ -1,10 +1,12 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const taskController = require('../controllers/taskController');
 
-router.post('/tasks', taskController.createTask);
-router.get('/tasks/:id', taskController.getTask);
-router.put('/tasks/:id', taskController.updateTask);
-router.delete('/tasks/:id', taskController.deleteTask);
+// Importe o controlador apropriado para lidar com as solicitações
+const taskController = require("../controllers/taskController");
+
+// Defina a rota GET para obter todas as tarefas
+router.get("/tasks", taskController.getAllTasks);
+
+// Defina outras rotas, se necessário...
 
 module.exports = router;
