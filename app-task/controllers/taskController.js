@@ -40,9 +40,14 @@ module.exports = {
   // Controller para atualizar uma tarefa
   updateTask: async (req, res) => {
     try {
-      const taskId = req.params.id;
+      const taskId = req.params.idTask;
       const updatedTaskData = req.body;
       const updatedTask = await taskService.updateTask(taskId, updatedTaskData);
+      console.log(updatedTask); // Adicione esta linha para verificar o resultado retornado
+      if (!updatedTask) {
+        res.status(404).json({ message: 'Tarefa não encontrada' });
+        return;
+      }
       res.status(200).json(updatedTask);
     } catch (error) {
       res.status(500).json({ error: error.message });
@@ -52,7 +57,7 @@ module.exports = {
   // Controller para excluir uma tarefa
   deleteTask: async (req, res) => {
     try {
-      const taskId = req.params.id;
+      const taskId = req.params.idTask;
       await taskService.deleteTask(taskId);
       res.status(204).send();
     } catch (error) {

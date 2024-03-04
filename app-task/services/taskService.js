@@ -22,19 +22,14 @@ module.exports = {
   },
 
   // Função para obter uma tarefa existente
-  getTask: async (id) => {
-    const query = 'SELECT idTask, title, description, isCompleted, emailUser FROM tasks WHERE idTask = ?';
+  getAllTasks: async (id) => {
+    const query = 'SELECT * FROM tasks';
     return new Promise((resolve, reject) => {
-      db.query(query, [id], (error, results) => {
+      db.query(query, (error, results) => {
         if (error) {
           reject(error);
         } else {
-          if (results.length === 0) {
-            resolve(null);
-          } else {
-            const { idTask, title, description, isCompleted, emailUser } = results[0];
-            resolve({ idTask, title, description, isCompleted, emailUser });
-          }
+          resolve(results);
         }
       });
     });
