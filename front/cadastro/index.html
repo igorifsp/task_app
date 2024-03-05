@@ -2,7 +2,11 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
-    <link rel="shortcut icon" href="/front/assets/logo.png" type="image/x-icon">
+    <link
+      rel="shortcut icon"
+      href="/front/assets/logo.png"
+      type="image/x-icon"
+    />
     <div class="title-container">
       <title>TaskZen | Cadatre-se</title>
     </div>
@@ -42,13 +46,20 @@
                       />
                     </div>
                     <div class="form-group">
-                      <input
-                        type="password"
-                        class="form-control rounded-pill"
-                        id="password"
-                        placeholder="Senha"
-                        required
-                      />
+                      <div class="input-group">
+                        <input
+                          type="password"
+                          class="form-control rounded-pill"
+                          id="password"
+                          placeholder="Senha"
+                          required
+                        />
+                        <div class="input-group-append">
+                          <span class="input-group-text">
+                            <i class="far fa-eye-slash" id="togglePassword"></i>
+                          </span>
+                        </div>
+                      </div>
                     </div>
                     <div class="form-group">
                       <input
@@ -85,6 +96,10 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/f77927e0e6.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="script.js"></script>
   </body>
 </html>
