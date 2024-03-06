@@ -42,8 +42,8 @@
 
                     <ul class="nav pills flex-column mt-5">
                         <li class="nav-item mt-4">
-                            <img src="/front/assets/icon-add.png" alt="add"> <span class="fs-4 d-none d-sm-inline"><a
-                                    href="">Adicionar Tarefa</a></span>
+                            <img src="/front/assets/icon-add.png" alt="add"> <span class="fs-4 d-none d-sm-inline">
+                                <button onclick="createTask()">Adicionar Tarefa</button></span>
                         </li>
                         <li class="nav-item mt-1">
                             <img src="/front/assets/icon-search.png" alt="add"><span class="fs-4 d-none d-sm-inline"
@@ -59,17 +59,9 @@
                         <p>Lista de Tarefas</p>
                     </div>
 
-                    <div class="tasks">
-                        <i class="fa-solid fa-circle-check"></i>
-                        <div class="edit-delete">
-                            <p>Praticar 30 minutos de yoga</p>
-                            <div class="icons">
-                                <i class="fa-solid fa-pen-to-square edit" style="color:blue; cursor: pointer;"></i>
-                                <i class="fa-solid fa-trash delete" style="color: red; cursor: pointer"></i>
-                            </div>
-                        </div>
+                    <div id="taskContainer">
+                        <!-- adicionar as tacks -->
                     </div>
-
                 </div>
 
             </div>
