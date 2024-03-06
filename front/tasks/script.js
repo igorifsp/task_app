@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
       userData.favoriteActivity;
   }
 
-  // "Sair"
   document
     .getElementById("logoutButton")
     .addEventListener("click", function () {
