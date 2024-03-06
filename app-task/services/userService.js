@@ -38,8 +38,7 @@ module.exports = {
   },
 
   getUser: async (email) => {
-    const query =
-      "SELECT email, favoriteActivity, username FROM users WHERE email = ?";
+    const query = "SELECT * FROM users WHERE email = ?";
     return new Promise((resolve, reject) => {
       db.query(query, [email], (error, results) => {
         if (error) {
@@ -48,8 +47,8 @@ module.exports = {
           if (results.length === 0) {
             resolve(null);
           } else {
-            const { email, favoriteActivity, username } = results[0];
-            resolve({ email, favoriteActivity, username });
+            const { email, password, favoriteActivity, username } = results[0];
+            resolve({ email, password, favoriteActivity, username });
           }
         }
       });
