@@ -1,10 +1,8 @@
-require("dotenv").config(); // Carrega as variáveis de ambiente do arquivo .env
+require("dotenv").config();
 
-// Importação do banco de dados
 const { getTask } = require("../controllers/taskController");
 const db = require("../dbConfig");
 
-// Função para criar uma nova tarefa
 module.exports = {
   createTask: async (taskData) => {
     const { title, description, isCompleted, emailUser } = taskData;
@@ -41,7 +39,6 @@ module.exports = {
     });
   },
 
-  // Função para atualizar uma tarefa existente
   updateTask: async (id, taskData) => {
     const { title, description, isCompleted, emailUser } = taskData;
     const query =
@@ -62,7 +59,6 @@ module.exports = {
     });
   },
 
-  // Função para deletar uma tarefa existente
   deleteTask: async (id) => {
     const query = "DELETE FROM tasks WHERE idTask = ?";
     return new Promise((resolve, reject) => {

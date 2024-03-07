@@ -64,16 +64,15 @@ document
                     "Content-Type": "application/json",
                   },
                   body: JSON.stringify({
-                    ...userData, // Manter os dados originais do usuário
-                    password: newPassword, // Atualizar apenas a senha
+                    ...userData,
+                    password: newPassword,
                   }),
                 }
               );
 
               if (putResponse.ok) {
                 console.log("Senha atualizada com sucesso.");
-                // Redirecionar para a página de login
-                window.location.href = "../login/index.html";
+                window.location.href = "../login/";
               } else {
                 console.error("Erro ao atualizar a senha.");
               }

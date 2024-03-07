@@ -1,6 +1,5 @@
 const taskService = require("../services/taskService");
 
-// Controller para criar uma nova tarefa
 module.exports = {
   createTask: async (req, res) => {
     try {
@@ -22,7 +21,6 @@ module.exports = {
     }
   },
 
-  // Controller para obter uma tarefa por ID
   getTaskById: async (req, res) => {
     try {
       const taskId = req.params.id;
@@ -37,13 +35,12 @@ module.exports = {
     }
   },
 
-  // Controller para atualizar uma tarefa
   updateTask: async (req, res) => {
     try {
       const taskId = req.params.idTask;
       const updatedTaskData = req.body;
       const updatedTask = await taskService.updateTask(taskId, updatedTaskData);
-      console.log(updatedTask); // Adicione esta linha para verificar o resultado retornado
+      console.log(updatedTask);
       if (!updatedTask) {
         res.status(404).json({ message: "Tarefa não encontrada" });
         return;
@@ -54,7 +51,6 @@ module.exports = {
     }
   },
 
-  // Controller para excluir uma tarefa
   deleteTask: async (req, res) => {
     try {
       const taskId = req.params.idTask;

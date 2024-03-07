@@ -17,63 +17,63 @@ module.exports = {
 
   createUser: async (req, res) => {
     try {
-      const userData = req.body; // Obtém os dados do corpo da requisição
-      const newUser = await userService.createUser(userData); // Chama o serviço para criar o usuário
-      res.status(201).json(newUser); // Retorna o novo usuário criado
+      const userData = req.body;
+      const newUser = await userService.createUser(userData);
+      res.status(201).json(newUser);
     } catch (error) {
-      res.status(500).json({ error: error.message }); // Retorna um erro em caso de falha na criação do usuário
+      res.status(500).json({ error: error.message });
     }
   },
 
   getUser: async (req, res) => {
     try {
-      const email = req.params.email; // Obtém o email do usuário a ser buscado
-      const user = await userService.getUser(email); // Chama o serviço para obter o usuário
+      const email = req.params.email;
+      const user = await userService.getUser(email);
       if (!user) {
-        res.status(404).json({ message: "Usuário não encontrado" }); // Retorna um erro se o usuário não for encontrado
+        res.status(404).json({ message: "Usuário não encontrado" });
       } else {
-        res.status(200).json(user); // Retorna o usuário encontrado
+        res.status(200).json(user);
       }
     } catch (error) {
-      res.status(500).json({ error: error.message }); // Retorna um erro em caso de falha na busca do usuário
+      res.status(500).json({ error: error.message });
     }
   },
 
   getAllUsers: async (req, res) => {
     try {
-      const users = await userService.getAllUsers(); // Chama o serviço para obter todos os usuários
-      res.status(200).json(users); // Retorna os usuários encontrados
+      const users = await userService.getAllUsers();
+      res.status(200).json(users);
     } catch (error) {
-      res.status(500).json({ error: error.message }); // Retorna um erro em caso de falha na busca dos usuários
+      res.status(500).json({ error: error.message });
     }
   },
 
   updateUser: async (req, res) => {
     try {
-      const email = req.params.email; // Obtém o email do usuário a ser atualizado
-      const userData = req.body; // Obtém os dados atualizados do corpo da requisição
-      const updatedUser = await userService.updateUser(email, userData); // Chama o serviço para atualizar o usuário
+      const email = req.params.email;
+      const userData = req.body;
+      const updatedUser = await userService.updateUser(email, userData);
       if (!updatedUser) {
-        res.status(404).json({ message: "Usuário não encontrado" }); // Retorna um erro se o usuário não for encontrado
+        res.status(404).json({ message: "Usuário não encontrado" });
       } else {
-        res.status(200).json(updatedUser); // Retorna o usuário atualizado
+        res.status(200).json(updatedUser);
       }
     } catch (error) {
-      res.status(500).json({ error: error.message }); // Retorna um erro em caso de falha na atualização do usuário
+      res.status(500).json({ error: error.message });
     }
   },
 
   deleteUser: async (req, res) => {
     try {
-      const email = req.params.email; // Obtém o email do usuário a ser deletado
-      const deletedUser = await userService.deleteUser(email); // Chama o serviço para deletar o usuário
+      const email = req.params.email;
+      const deletedUser = await userService.deleteUser(email);
       if (!deletedUser) {
-        res.status(404).json({ message: "Usuário não encontrado" }); // Retorna um erro se o usuário não for encontrado
+        res.status(404).json({ message: "Usuário não encontrado" });
       } else {
-        res.status(200).json({ message: "Usuário deletado com sucesso" }); // Retorna uma mensagem de sucesso se o usuário for deletado
+        res.status(200).json({ message: "Usuário deletado com sucesso" });
       }
     } catch (error) {
-      res.status(500).json({ error: error.message }); // Retorna um erro em caso de falha na exclusão do usuário
+      res.status(500).json({ error: error.message });
     }
   },
 };
