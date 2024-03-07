@@ -1,138 +1,138 @@
 :root {
-    --bgToDo: #F5F8F9;
-    --bgMain: #0C5663;
-    --datails: #C4D6D9;
+  --bgToDo: #f5f8f9;
+  --bgMain: #0c5663;
+  --datails: #c4d6d9;
 }
 
 * {
-    font-family: "Roboto", sans-serif;
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 .body {
-    width: 100%;
-    height: 100vh;
+  width: 100%;
+  height: 100vh;
 }
 
 .dropdown img {
-    width: 50px;
-    margin-right: 10px;
+  width: 50px;
+  margin-right: 10px;
 }
 
 .dropdown {
-    margin-left: -10px;
+  margin-left: -10px;
 }
 
 .logo img {
-    width: 40px;
+  width: 40px;
 }
 
 .logo {
-    color: #0C5663;
-    font-weight: 500;
-    margin-top: 10px;
+  color: #0c5663;
+  font-weight: 500;
+  margin-top: 10px;
 }
 
 .side-bar {
-    background-color: var(--bgToDo);
-    padding-left: 12px;
+  background-color: var(--bgToDo);
+  padding-left: 12px;
 }
 
 .dropdown-item {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 .context {
-    margin: 50px;
+  margin: 50px;
 }
 
 .title {
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 
 .title p {
-    font-size: 1.5rem;
-    color: var(--bgMain);
-    font-weight: 500;
+  font-size: 1.5rem;
+  color: var(--bgMain);
+  font-weight: 500;
 }
 
 .tasks {
-    display: flex;
-    justify-content: flex-start;
-    padding: 20px;
-    box-shadow: 0px 2px 2px rgba(196, 214, 217, 0.9);
-    border-radius: 0.8rem;
+  display: flex;
+  justify-content: flex-start;
+  padding: 20px;
+  box-shadow: 0px 2px 2px rgba(196, 214, 217, 0.9);
+  border-radius: 0.8rem;
 }
 
 .tasks i {
-    color: var(--bgMain);
-    margin-right: 20px;
-    margin-top: 2px;
-    padding: 3px;
-    font-size: 1.2rem;
+  color: var(--bgMain);
+  margin-right: 20px;
+  margin-top: 2px;
+  padding: 3px;
+  font-size: 1.2rem;
 }
 
 .tasks p {
-    font-size: 1.1rem;
+  font-size: 1.1rem;
 }
 
 span button {
-    color: var(--bgMain);
-    font-size: 1.2rem;
-    background-color: transparent;
-    border: transparent;
+  color: var(--bgMain);
+  font-size: 1.2rem;
+  background-color: transparent;
+  border: transparent;
 }
 
 #search a {
-    color: #000;
-    font-size: 1.2rem;
-    text-decoration: none;
+  color: #000;
+  font-size: 1.2rem;
+  text-decoration: none;
 }
 
 .nav-item img {
-    width: 55px;
-    margin-right: 10px;
+  width: 55px;
+  margin-right: 10px;
 }
 
 .edit-delete {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .icons {
-    display: flex;
-    margin-left: 27em;
+  display: flex;
+  margin-left: 27em;
 }
 
-
 #sidebar {
-    display: none;
-    background-color: #f5f5f5;
-    z-index: 1;
-    position: fixed;
-    top: 0;
-    right: 0;
-    transition: 0.5s;
-    padding-top: 20px;
+  display: none;
+  background-color: #f5f5f5;
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  right: 0;
+  transition: 0.5s;
+  padding-top: 20px;
 }
 
 .sidebar-content {
-    padding: 20px;
+  padding: 20px;
 }
 
 .closebtn {
-    position: absolute;
-    top: 0;
-    left: 10px;
-    font-size: 25px;
-    margin-right: 20px;
+  position: absolute;
+  top: 0;
+  left: 10px;
+  font-size: 25px;
+  margin-right: 20px;
+  color: var(--bgMain);
 }
 
-.dropdown-menu button{
-    background-color: transparent;
-    border: none;
-    outline: none;
-    font-size: 1rem;
+.dropdown-menu button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 1rem;
 }

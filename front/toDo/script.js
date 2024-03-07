@@ -1,66 +1,124 @@
-function createTask() {
-  let div = document.createElement("div");
-  div.classList.add("tasks");
+document.addEventListener("DOMContentLoaded", function () {
+  // Função para abrir a barra lateral
+  function openSidebar() {
+    document.getElementById("sidebar").style.display = "block";
+  }
 
-  let checkIcon = document.createElement("i");
-  checkIcon.classList.add("fa-solid", "fa-circle-check");
+  // Função para fechar a barra lateral
+  function closeSidebar() {
+    document.getElementById("sidebar").style.display = "none";
+  }
 
-  let editDeleteDiv = document.createElement("div");
-  editDeleteDiv.classList.add("edit-delete");
+  // Adiciona o evento de clique no ícone de editar
+  const editIcon = document.getElementById("editIcon");
+  if (editIcon) {
+    editIcon.addEventListener("click", function () {
+      openSidebar();
+    });
+  } else {
+    console.error("Elemento editIcon não encontrado.");
+  }
 
-  let taskPara = document.createElement("p");
-  taskPara.textContent = "Praticar 30 minutos de yoga";
+  // Adiciona o evento de submit no formulário de edição
+  document
+    .getElementById("editForm")
+    .addEventListener("submit", async function (event) {
+      event.preventDefault();
+      var newUsername = document.getElementById("editUsername").value;
+      var newActivity = document.getElementById("editActivity").value;
 
-  let iconsDiv = document.createElement("div");
-  iconsDiv.classList.add("icons");
+      try {
+        const storedUserData = JSON.parse(localStorage.getItem("userData"));
+        const email = storedUserData.email;
 
-  let editIcon = document.createElement("i");
-  editIcon.classList.add("fa-solid", "fa-pen-to-square", "edit");
-  editIcon.style.color = "blue";
-  editIcon.style.cursor = "pointer";
-  editIcon.addEventListener("click", function () {
-    console.log("Editar tarefa");
-  });
+        // Enviar solicitação GET para obter os dados atualizados do usuário
+        const getResponse = await fetch(
+          `http://localhost:3000/users/${email}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
-  let deleteIcon = document.createElement("i");
-  deleteIcon.classList.add("fa-solid", "fa-trash", "delete");
-  deleteIcon.style.color = "red";
-  deleteIcon.style.cursor = "pointer";
-  deleteIcon.addEventListener("click", function () {
-    console.log("Excluir tarefa");
-    div.remove();
-  });
+        if (getResponse.ok) {
+          const userData = await getResponse.json();
+          console.log("Dados do usuário (atualizados):", userData);
 
-  iconsDiv.appendChild(editIcon);
-  iconsDiv.appendChild(deleteIcon);
+          // Enviar solicitação PUT para atualizar o perfil do usuário
+          const putResponse = await fetch(
+            `http://localhost:3000/users/${email}`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                ...userData, // Utilizar dados originais do usuário
+                username: newUsername,
+                favoriteActivity: newActivity,
+              }),
+            }
+          );
 
-  editDeleteDiv.appendChild(checkIcon);
-  editDeleteDiv.appendChild(taskPara);
-  editDeleteDiv.appendChild(iconsDiv);
+          if (putResponse.ok) {
+            // Atualizar os valores na página
+            document.getElementById("username").textContent = newUsername;
+            document.getElementById("favoriteActivity").textContent =
+              newActivity;
+            closeSidebar();
+          } else {
+            console.error("Erro ao atualizar usuário:", putResponse.statusText);
+          }
+        } else {
+          console.error(
+            "Erro ao obter dados do usuário:",
+            getResponse.statusText
+          );
+        }
+      } catch (error) {
+        console.error("Erro ao enviar dados para a API:", error.message);
+      }
+    });
 
-  div.appendChild(editDeleteDiv);
+  // Adiciona o evento de clique no ícone de excluir
+  document
+    .getElementById("deleteIcon")
+    .addEventListener("click", async function () {
+      var confirmDelete = confirm("Tem certeza que deseja excluir sua conta?");
+      if (confirmDelete) {
+        try {
+          const storedUserData = JSON.parse(localStorage.getItem("userData"));
+          const email = storedUserData.email;
 
-  document.getElementById("taskContainer").appendChild(div);
-}
+          const deleteResponse = await fetch(
+            `http://localhost:3000/users/${email}`,
+            {
+              method: "DELETE",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
 
-function openSidebar() {
-  document.getElementById('sidebar').style.display = "block";
-}
+          if (deleteResponse.ok) {
+            localStorage.removeItem("userData");
+            window.location.href = "../login/index.html";
+          } else {
+            console.error("Erro ao excluir conta:", deleteResponse.statusText);
+          }
+        } catch (error) {
+          console.error("Erro ao enviar solicitação DELETE:", error.message);
+        }
+      }
+    });
 
-function closeSidebar() {
-  document.getElementById("sidebar").style.display = "none";
-}
-
-document
-  .getElementById("editForm")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
-    // Obter os valores do formulário
-    var newUsername = document.getElementById("editUsername").value;
-    var newActivity = document.getElementById("editActivity").value;
-    // Atualizar os valores na página
-    document.getElementById("username").textContent = newUsername;
-    document.getElementById("favoriteActivity").textContent = newActivity;
-    closeSidebar();
-  });
-
+  // Adiciona o evento de clique no botão de logout
+  document
+    .getElementById("logoutButton")
+    .addEventListener("click", function () {
+      localStorage.removeItem("userData");
+      window.location.href = "../login/index.html";
+    });
+});
