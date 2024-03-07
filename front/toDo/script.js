@@ -369,7 +369,17 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.removeItem("userData");
             window.location.href = "../login/index.html";
           } else {
-            console.error("Erro ao excluir conta:", deleteResponse.statusText);
+            const errorMessage = await deleteResponse.json();
+            if (errorMessage.error.includes("foreign key constraint")) {
+              alert(
+                "Exclua primeiro suas tasks, para depois excluir sua conta"
+              );
+            } else {
+              console.error(
+                "Erro ao excluir conta:",
+                deleteResponse.statusText
+              );
+            }
           }
         } catch (error) {
           console.error("Erro ao enviar solicitação DELETE:", error.message);
