@@ -1,4 +1,40 @@
 function createTask() {
+  const taskDescription = document.getElementById("taskDescription").value;
+  // Crie um objeto com os dados da tarefa a ser enviada
+  const storedUserData = JSON.parse(localStorage.getItem("userData"));
+
+  const taskData = {
+    title: null,
+    description: taskDescription,
+    isCompleted: false,
+    emailUser: storedUserData.email, // Utilizando o email do usuário logado
+  };
+
+  // Configuração do objeto de opções para a requisição fetch
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(taskData), // Converte o objeto para JSON
+  };
+
+  // Enviar a requisição fetch para o endpoint
+  fetch("http://localhost:3000/tasks/", options)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Erro ao criar a tarefa");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log("Tarefa criada com sucesso:", data);
+      // Aqui você pode adicionar lógica para atualizar a interface do usuário se necessário
+    })
+    .catch((error) => {
+      console.error("Erro ao criar a tarefa:", error);
+    });
+
   let div = document.createElement("div");
   div.classList.add("tasks");
 
@@ -9,7 +45,7 @@ function createTask() {
   editDeleteDiv.classList.add("edit-delete");
 
   let taskPara = document.createElement("p");
-  taskPara.textContent = "Praticar 30 minutos de yoga";
+  taskPara.textContent = taskDescription;
 
   let iconsDiv = document.createElement("div");
   iconsDiv.classList.add("icons");
