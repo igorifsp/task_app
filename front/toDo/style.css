@@ -78,15 +78,17 @@
     font-size: 1.1rem;
 }
 
-span a {
-    text-decoration: none;
+span button {
     color: var(--bgMain);
     font-size: 1.2rem;
+    background-color: transparent;
+    border: transparent;
 }
 
 #search a {
     color: #000;
     font-size: 1.2rem;
+    text-decoration: none;
 }
 
 .nav-item img {
@@ -102,4 +104,35 @@ span a {
 .icons {
     display: flex;
     margin-left: 27em;
+}
+
+
+#sidebar {
+    display: none;
+    background-color: #f5f5f5;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    right: 0;
+    transition: 0.5s;
+    padding-top: 20px;
+}
+
+.sidebar-content {
+    padding: 20px;
+}
+
+.closebtn {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    font-size: 25px;
+    margin-right: 20px;
+}
+
+.dropdown-menu button{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 1rem;
 }

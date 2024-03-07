@@ -27,7 +27,7 @@ document
         localStorage.setItem("userData", JSON.stringify(userData));
 
         // Redirecionar para a página tasks
-        window.location.href = "../tasks/index.html";
+        window.location.href = "../toDo/index.html";
       } else {
         // Exibir mensagem de erro
         document.getElementById("errorMessage").textContent =
