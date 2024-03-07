@@ -1,4 +1,4 @@
-const taskService = require('../services/taskService');
+const taskService = require("../services/taskService");
 
 // Controller para criar uma nova tarefa
 module.exports = {
@@ -12,10 +12,10 @@ module.exports = {
     }
   },
 
-  // Controller para obter todas as tarefas
-  getAllTasks: async (req, res) => {
+  getUserTasks: async (req, res) => {
     try {
-      const tasks = await taskService.getAllTasks();
+      const emailUser = req.params.emailUser;
+      const tasks = await taskService.getUserTasks(emailUser);
       res.status(200).json(tasks);
     } catch (error) {
       res.status(500).json({ error: error.message });
@@ -28,7 +28,7 @@ module.exports = {
       const taskId = req.params.id;
       const task = await taskService.getTaskById(taskId);
       if (!task) {
-        res.status(404).json({ message: 'Tarefa não encontrada' });
+        res.status(404).json({ message: "Tarefa não encontrada" });
         return;
       }
       res.status(200).json(task);
@@ -45,7 +45,7 @@ module.exports = {
       const updatedTask = await taskService.updateTask(taskId, updatedTaskData);
       console.log(updatedTask); // Adicione esta linha para verificar o resultado retornado
       if (!updatedTask) {
-        res.status(404).json({ message: 'Tarefa não encontrada' });
+        res.status(404).json({ message: "Tarefa não encontrada" });
         return;
       }
       res.status(200).json(updatedTask);
@@ -63,5 +63,5 @@ module.exports = {
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
-  }
-}
+  },
+};

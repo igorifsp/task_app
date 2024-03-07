@@ -1,31 +1,37 @@
-require('dotenv').config(); // Carrega as variáveis de ambiente do arquivo .env
+require("dotenv").config(); // Carrega as variáveis de ambiente do arquivo .env
 
 // Importação do banco de dados
-const { getTask } = require('../controllers/taskController');
-const db = require('../dbConfig');
+const { getTask } = require("../controllers/taskController");
+const db = require("../dbConfig");
 
 // Função para criar uma nova tarefa
 module.exports = {
   createTask: async (taskData) => {
     const { title, description, isCompleted, emailUser } = taskData;
-    const query = 'INSERT INTO tasks (title, description, isCompleted, emailUser) VALUES (?, ?, ?, ?)';
+    const query =
+      "INSERT INTO tasks (title, description, isCompleted, emailUser) VALUES (?, ?, ?, ?)";
     const values = [title, description, isCompleted, emailUser];
     return new Promise((resolve, reject) => {
       db.query(query, values, (error, results) => {
         if (error) {
           reject(error);
         } else {
-          resolve({ idTask: results.insertId, title, description, isCompleted, emailUser });
+          resolve({
+            idTask: results.insertId,
+            title,
+            description,
+            isCompleted,
+            emailUser,
+          });
         }
       });
     });
   },
 
-  // Função para obter uma tarefa existente
-  getAllTasks: async (id) => {
-    const query = 'SELECT * FROM tasks';
+  getUserTasks: async (emailUser) => {
+    const query = "SELECT * FROM tasks WHERE emailUser = ?";
     return new Promise((resolve, reject) => {
-      db.query(query, (error, results) => {
+      db.query(query, [emailUser], (error, results) => {
         if (error) {
           reject(error);
         } else {
@@ -38,7 +44,8 @@ module.exports = {
   // Função para atualizar uma tarefa existente
   updateTask: async (id, taskData) => {
     const { title, description, isCompleted, emailUser } = taskData;
-    const query = 'UPDATE tasks SET title = ?, description = ?, isCompleted = ?, emailUser = ? WHERE idTask = ?';
+    const query =
+      "UPDATE tasks SET title = ?, description = ?, isCompleted = ?, emailUser = ? WHERE idTask = ?";
     const values = [title, description, isCompleted, emailUser, id];
     return new Promise((resolve, reject) => {
       db.query(query, values, (error, results) => {
@@ -57,7 +64,7 @@ module.exports = {
 
   // Função para deletar uma tarefa existente
   deleteTask: async (id) => {
-    const query = 'DELETE FROM tasks WHERE idTask = ?';
+    const query = "DELETE FROM tasks WHERE idTask = ?";
     return new Promise((resolve, reject) => {
       db.query(query, [id], (error, results) => {
         if (error) {
@@ -71,5 +78,5 @@ module.exports = {
         }
       });
     });
-  }
-}
+  },
+};

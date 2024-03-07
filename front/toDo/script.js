@@ -104,6 +104,95 @@ function addTask() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+  function formatTask(taskDescription) {
+    // Cria um elemento de div para a tarefa
+    let div = document.createElement("div");
+    div.classList.add("tasks");
+
+    // Cria um ícone de verificação
+    let checkIcon = document.createElement("i");
+    checkIcon.classList.add("fa-solid", "fa-circle-check");
+
+    // Cria uma div para edição e exclusão
+    let editDeleteDiv = document.createElement("div");
+    editDeleteDiv.classList.add("edit-delete");
+
+    // Cria um parágrafo para a descrição da tarefa
+    let taskPara = document.createElement("p");
+    taskPara.textContent = taskDescription;
+
+    // Cria uma div para os ícones de edição e exclusão
+    let iconsDiv = document.createElement("div");
+    iconsDiv.classList.add("icons");
+
+    // Cria um ícone de edição
+    let editIcon = document.createElement("i");
+    editIcon.classList.add("fa-solid", "fa-pen-to-square", "edit");
+    editIcon.style.color = "blue";
+    editIcon.style.cursor = "pointer";
+    editIcon.addEventListener("click", function () {
+      console.log("Editar tarefa");
+    });
+
+    // Cria um ícone de exclusão
+    let deleteIcon = document.createElement("i");
+    deleteIcon.classList.add("fa-solid", "fa-trash", "delete");
+    deleteIcon.style.color = "red";
+    deleteIcon.style.cursor = "pointer";
+    deleteIcon.addEventListener("click", function () {
+      console.log("Excluir tarefa");
+      div.remove();
+    });
+
+    // Adiciona os ícones de edição e exclusão à div de ícones
+    iconsDiv.appendChild(editIcon);
+    iconsDiv.appendChild(deleteIcon);
+
+    // Adiciona o ícone de verificação, a descrição da tarefa e a div de ícones à div de edição e exclusão
+    editDeleteDiv.appendChild(checkIcon);
+    editDeleteDiv.appendChild(taskPara);
+    editDeleteDiv.appendChild(iconsDiv);
+
+    // Adiciona a div de edição e exclusão à div da tarefa
+    div.appendChild(editDeleteDiv);
+
+    // Retorna a div da tarefa formatada
+    return div;
+  }
+
+  function getUserTasks() {
+    const storedUserData = JSON.parse(localStorage.getItem("userData"));
+    const email = storedUserData.email;
+
+    fetch(`http://localhost:3000/tasks/${email}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Erro ao obter as tarefas do usuário");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Tarefas do usuário:", data);
+        // Atualiza o conteúdo do elemento com id 'taskContainer'
+        const taskContainer = document.getElementById("taskContainer");
+        taskContainer.innerHTML = ""; // Limpa o conteúdo anterior, se houver
+
+        data.forEach((task) => {
+          // Formata cada tarefa e adiciona ao container de tarefas
+          const formattedTask = formatTask(task.description);
+          taskContainer.appendChild(formattedTask);
+        });
+      })
+      .catch((error) => {
+        console.error("Erro ao obter as tarefas do usuário:", error);
+      });
+  }
+
+  // Chama a função para obter as tarefas do usuário assim que o usuário logar
+  getUserTasks();
+
+  // Chama a função para obter as tarefas do usuário assim que o usuário logar
+
   // Função para abrir a barra lateral
   function openSidebar() {
     document.getElementById("sidebar").style.display = "block";
