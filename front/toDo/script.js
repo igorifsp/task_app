@@ -104,7 +104,8 @@ function addTask() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  function formatTask(taskDescription) {
+  // Função para formatar a tarefa
+  function formatTask(task) {
     // Cria um elemento de div para a tarefa
     let div = document.createElement("div");
     div.classList.add("tasks");
@@ -119,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Cria um parágrafo para a descrição da tarefa
     let taskPara = document.createElement("p");
-    taskPara.textContent = taskDescription;
+    taskPara.textContent = task.description;
 
     // Cria uma div para os ícones de edição e exclusão
     let iconsDiv = document.createElement("div");
@@ -140,7 +141,13 @@ document.addEventListener("DOMContentLoaded", function () {
     deleteIcon.style.color = "red";
     deleteIcon.style.cursor = "pointer";
     deleteIcon.addEventListener("click", function () {
-      console.log("Excluir tarefa");
+      // Obtém o idTask da tarefa
+      const idTask = task.idTask;
+
+      // Chama a função para excluir a tarefa
+      deleteTask(idTask);
+
+      // Remove a div da tarefa do DOM
       div.remove();
     });
 
@@ -160,6 +167,24 @@ document.addEventListener("DOMContentLoaded", function () {
     return div;
   }
 
+  // Função para excluir a tarefa
+  function deleteTask(idTask) {
+    // Faz uma requisição DELETE para o endpoint apropriado
+    fetch(`http://localhost:3000/tasks/${idTask}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Erro ao excluir a tarefa");
+        }
+        console.log("Tarefa excluída com sucesso");
+      })
+      .catch((error) => {
+        console.error("Erro ao excluir a tarefa:", error);
+      });
+  }
+
+  // Função para obter as tarefas do usuário
   function getUserTasks() {
     const storedUserData = JSON.parse(localStorage.getItem("userData"));
     const email = storedUserData.email;
@@ -179,7 +204,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         data.forEach((task) => {
           // Formata cada tarefa e adiciona ao container de tarefas
-          const formattedTask = formatTask(task.description);
+          const formattedTask = formatTask(task);
           taskContainer.appendChild(formattedTask);
         });
       })
@@ -190,8 +215,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Chama a função para obter as tarefas do usuário assim que o usuário logar
   getUserTasks();
-
-  // Chama a função para obter as tarefas do usuário assim que o usuário logar
 
   // Função para abrir a barra lateral
   function openSidebar() {
