@@ -1,11 +1,35 @@
-function createTask() {
-  const taskDescription = document.getElementById("taskDescription").value;
+function toggleTaskInput() {
+  // Obtém o elemento do input
+  const inputElement = document.getElementById("taskDescriptionInput");
+
+  // Verifica se o input está visível
+  if (inputElement.style.display === "none") {
+    // Define a visibilidade do input para ser exibido
+    inputElement.style.display = "inline-block";
+  } else {
+    // Define a visibilidade do input para ser invisível
+    inputElement.style.display = "none";
+  }
+}
+
+function addTask() {
+  // Obtenha o texto digitado pelo usuário na entrada
+  const taskDescription = document
+    .getElementById("taskDescriptionInput")
+    .value.trim();
+
+  // Verifica se o input possui texto
+  if (!taskDescription) {
+    // Se o input estiver vazio, não faz nada
+    return;
+  }
+
   // Crie um objeto com os dados da tarefa a ser enviada
   const storedUserData = JSON.parse(localStorage.getItem("userData"));
 
   const taskData = {
-    title: null,
-    description: taskDescription,
+    title: null, // Como você mencionou que o título deve ser nulo
+    description: taskDescription, // Use a descrição digitada pelo usuário
     isCompleted: false,
     emailUser: storedUserData.email, // Utilizando o email do usuário logado
   };

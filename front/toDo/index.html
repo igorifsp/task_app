@@ -49,11 +49,12 @@
                     <ul class="nav pills flex-column mt-5">
                         <li class="nav-item mt-4">
                             <br>
-                            <img src="/front/assets/icon-add.png" alt="add"> <span class="fs-4 d-none d-sm-inline">
-<!-- No HTML, substitua o parágrafo (p) pela entrada (input) e adicione um botão -->
-                             <input type="text" id="taskDescription" placeholder="Digite a descrição da tarefa">
-                             <button onclick="createTask()">Adicionar Tarefa</button>
+                        <img src="/front/assets/icon-add.png" alt="add" onclick="toggleTaskInput()">
+                        <input type="text" id="taskDescriptionInput" style="display: none;" placeholder="Descrição">
+                        <button id="addTaskButton" onclick="addTask()">Adicionar Tarefa</button>
+                        
                         </li>
+                        <br>
                         <li class="nav-item mt-1">
                             <img src="/front/assets/icon-search.png" alt="add"><span class="fs-4 d-none d-sm-inline"
                                 id="search"><a href="">Buscar</a></span>
