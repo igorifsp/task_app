@@ -33,7 +33,7 @@ www.figma.com/file/QgoZYzYWIHzp33o5BxBLAn/Untitled?type=design&node-id=0%3A1&mod
 ## JEST
 - Getting Started: <br/>
 ```sh
-cd src
+cd app-task
 npm start
 npm jest
 ```
