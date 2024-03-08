@@ -34,6 +34,7 @@ www.figma.com/file/QgoZYzYWIHzp33o5BxBLAn/Untitled?type=design&node-id=0%3A1&mod
 - Getting Started: <br/>
 ```sh
 cd app-task
+npm install
 npm start
 npm jest
 ```
